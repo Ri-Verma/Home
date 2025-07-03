@@ -215,7 +215,7 @@ const Home = () => {
       icon: <SiReact className="text-blue-500" />,
       title: "Learning Management System",
       url: "https://github.com/Ri-Verma/Learning-management-system",
-      description: "Full-stack web application built with React, Node.js, and MongoDB. Features user authentication, course management, and real-time updates. with realtime differnt dashbord for students and Instructor. The application is designed to provide a seamless learning experience, allowing users to access courses, track progress, and manage their learning journey efficiently."
+      description: "Full-stack web application built with React, Node.js, and MongoDB. Features user authentication, course management, and real-time updates. with realtime differnt dashbord for students and Instructor. The application is designed to allowing users to access courses, track progress, and manage their learning journey efficiently."
     },
     {
       image: "/vehicle.jpg",
@@ -379,11 +379,11 @@ const Home = () => {
                   return (
                     <div
                       key={idx}
-                      className={`absolute transition-all duration-500  w-[85%] max-w-sm ${
+                      className={`absolute transition-all duration-500  w-[100%] max-w-sm ${
                         isActive ? 'z-20 scale-105 opacity-100' : 'z-10 scale-90 opacity-60'
                       }`}
                       style={{
-                        transform: `translate(-70%, -50%) scale(${isActive ? 1. : 0.9 - Math.abs(offset)*0.1})`,
+                        transform: `translate(-50%, -50%) scale(${isActive ? 1. : 0.9 - Math.abs(offset)*0.1})`,
                         left: '50%',
                         top: '50%',
                         filter: isActive ? 'none' : 'blur(2px)',

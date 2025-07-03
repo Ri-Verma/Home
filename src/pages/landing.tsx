@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, memo, useState } from "react";
-import { SiReact, SiNodedotjs, SiPython, SiCplusplus } from "react-icons/si";
+import { SiReact, SiNodedotjs, SiPython} from "react-icons/si";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+
+// creating sections
 const Section = ({ children, bgColor, bgImage, index, id }) => {
   const sectionRef = useRef(null);
 
@@ -31,7 +33,6 @@ const Section = ({ children, bgColor, bgImage, index, id }) => {
       }
     );
 
-    // Intersection Observer for sticky positioning
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -82,7 +83,7 @@ const Section = ({ children, bgColor, bgImage, index, id }) => {
   );
 };
 
-// Floating Particles Animation with GSAP
+// floating particles animation 
 const FloatingParticles = () => {
   const containerRef = useRef(null);
 
@@ -92,16 +93,14 @@ const FloatingParticles = () => {
     const particles = [];
     const container = containerRef.current;
 
-    // Create blue dots
     for (let i = 0; i < 120; i++) {
       const particle = document.createElement('div');
-      particle.className = 'absolute w-2 h-2 bg-blue-400/40 rounded-full';
+      particle.className = 'absolute w-2 h-2 bg-blue-600/70 rounded-full';
       particle.style.left = Math.random() * window.innerWidth + 'px';
       particle.style.top = Math.random() * window.innerHeight + 'px';
       container.appendChild(particle);
       particles.push(particle);
 
-      // Animate each dot uniquely
       gsap.to(particle, {
         x: `+=${Math.random() * 100 - 50}`,
         y: `+=${Math.random() * 100 - 50}`,
@@ -184,26 +183,23 @@ const SkillCard = memo(({ icon, title, description, image, url }) => {
       <div className="text-4xl mb-2">{icon}</div>
       <h3 className="text-xl font-bold mb-2 text-white text-center">{title}</h3>
       <p className="text-gray-300 text-sm text-justify">{description}</p>
+      <a href={url} target="_blank" rel="noopener noreferrer" className="text-cyan-600 hover:underline border-t border-white mt-4 pt-2 transition-colors duration-300">
+          Follow Link
+        </a>
     </div>
   );
 
   return (
     <div
       ref={cardRef}
-      className="flex flex-col items-center p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all cursor-pointer w-64 min-h-[420px] max-w-xs mx-auto shadow-lg"
+      className="flex flex-col items-center p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all cursor-pointer w-full min-h-[420px] max-w-xs mx-auto shadow-lg"
     >
-      {url ? (
-        <a href={url} target="_blank" rel="noopener noreferrer" className="w-full h-full flex flex-col items-center no-underline hover:underline focus:underline">
-          {CardContent}
-        </a>
-      ) : CardContent}
+      {CardContent}
     </div>
   );
 });
 
 const Home = () => {
-  const mainBoxRef = useRef(null);
-  const floatingDecoRef = useRef(null);
   const containerRef = useRef(null);
   const [mobileProjectIndex, setMobileProjectIndex] = useState(0);
   const [mobileCertIndex, setMobileCertIndex] = useState(0);
@@ -211,95 +207,15 @@ const Home = () => {
   const [touchEndX, setTouchEndX] = useState(null);
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
   
-  useEffect(() => {
-    if (!gsap) return;
-    
-    //  ScrollTrigger available globally
-    window.ScrollTrigger = ScrollTrigger;
-    
-    let ctx = gsap.context(() => {
-      const style = document.createElement('style');
-      style.textContent = `
-        html {
-          scroll-behavior: auto; /* Disable CSS smooth scroll for more control */
-        }
-        
-        /* Ensure proper section spacing */
-        .section {
-          scroll-margin-top: 80px;
-        }
-      `;
-      document.head.appendChild(style);
-    }, containerRef);
-
-    // Animate main box on load
-    if (mainBoxRef.current) {
-      gsap.fromTo(mainBoxRef.current, 
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-      );
-
-      // hover animation
-      const handleMouseEnter = () => {
-        gsap.to(mainBoxRef.current, {
-          scale: 1.1,
-          duration: 0.3,
-          bounce: 10,
-          ease: "power2.out"
-        });
-      };
-
-      const handleMouseLeave = () => {
-        gsap.to(mainBoxRef.current, {
-          scale: 1,
-          duration: 0.3,
-          bounce: 10,
-          ease: "power2.out"
-        });
-      };
-
-      mainBoxRef.current.addEventListener('mouseenter', handleMouseEnter);
-      mainBoxRef.current.addEventListener('mouseleave', handleMouseLeave);
-
-      return () => {
-        ctx.revert();
-        if (mainBoxRef.current) {
-          mainBoxRef.current.removeEventListener('mouseenter', handleMouseEnter);
-          mainBoxRef.current.removeEventListener('mouseleave', handleMouseLeave);
-        }
-      };
-    }
-
-    // Animate floating decorations
-    if (floatingDecoRef.current) {
-      const decorations = floatingDecoRef.current.children;
-      Array.from(decorations).forEach((decoration, index) => {
-        gsap.fromTo(decoration,
-          { opacity: 0, scale: 0.8 },
-          { 
-            opacity: index === 0 ? 0.3 : 0.2, 
-            scale: 1, 
-            duration: 1, 
-            delay: 0.5 + index * 0.3,
-            ease: "power2.out"
-          }
-        );
-      });
-    }
-
-    return () => {
-      ctx.revert();
-    };
-  }, []);
-
-  // Project and certificate data
+  
+  // project and certificate data
   const projects = [
     {
       image: "/lms.jpg",
       icon: <SiReact className="text-blue-500" />,
       title: "Learning Management System",
       url: "https://github.com/Ri-Verma/Learning-management-system",
-      description: "Full-stack web application built with React, Node.js, and MongoDB. Features user authentication, course management, and real-time updates."
+      description: "Full-stack web application built with React, Node.js, and MongoDB. Features user authentication, course management, and real-time updates. with realtime differnt dashbord for students and Instructor. The application is designed to provide a seamless learning experience, allowing users to access courses, track progress, and manage their learning journey efficiently."
     },
     {
       image: "/vehicle.jpg",
@@ -314,14 +230,7 @@ const Home = () => {
       title: "Simmple E-commerce Platform",
       url: "https://github.com/Ri-Verma/E-commerce_Website",
       description: "MERN Stack based E-Commerce platform, featuring MongoDB for database management, React-Vite + Tailwind CSS for a dynamic frontend, and a Node.js + Express.js backend for seamless server operations. This project demonstrates my ability to develop robust, full-stack web applications."
-    },
-    // {
-    //   image: "/yolo.jpg",
-    //   icon: <SiCplusplus className="text-blue-600" />,
-    //   title: "System Monitor",
-    //   url: "https://cplusplus.com",
-    //   description: "High-performance system monitoring tool built with C++. Tracks CPU, memory, and network usage in real-time."
-    // }
+    }
   ];
   const certificates = [
     {
@@ -337,16 +246,10 @@ const Home = () => {
       image: "/Coursera 0002.jpg",
       url: "https://coursera.org/share/f161bcb5018b81cd9ee805085cad5d17",
       description: "Cloud development certification for building and deploying applications on AWS"
-    },
-    // {
-    //   icon: "🌐",
-    //   title: "CCNA",
-    //   url: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html",
-    //   description: "Cisco Certified Network Associate - Networking fundamentals and implementation"
-    // }
+    }
   ];
 
-  // Swipe handlers for projects
+  // Swipe handlers 
   const handleProjectTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
   };
@@ -367,14 +270,14 @@ const Home = () => {
     setTouchEndX(null);
   };
 
-  // Swipe handlers for certificates
+  // Swipe handlers 
   const handleCertTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
   };
   const handleCertTouchMove = (e) => {
     setTouchEndX(e.touches[0].clientX);
   };
-  // Swipe handlers for certificates (looping)
+
   const handleCertTouchEnd = () => {
     if (touchStartX !== null && touchEndX !== null) {
       const diff = touchStartX - touchEndX;
@@ -392,18 +295,19 @@ const Home = () => {
     <div ref={containerRef} className="snap-start relative w-full">
       <div className="snap-start relative">
         {/* Front Page */}
-        <Section id="about" bgColor="bg-[#020617]" bgImage="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1920&h=1080&fit=crop" index={1}>
+        <Section id="about" bgColor="bg-[#020617]" bgImage="branden.jpg" index={1}>
           <FloatingParticles />
           <AboutMeAnimated mobileFix />
         </Section>
         {/* Projects Section */}
-        <Section id="projects" bgColor="bg-[#030927]" bgImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop" index={2}>
+        <Section id="projects" bgColor="bg-[#030927]" bgImage="axville.jpg" index={2}>
           <div className="snap-start max-w-6xl mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-12 text-center text-white">
-              Featured Projects
-            </h2>
+            
             {isMobile ? (
               <div className="snap-start max-w-6xl mx-auto">
+                <h2 className="text-4xl font-bold mt-24 pt-16 text-center text-white">
+              Featured Projects
+            </h2>
               <div
                 className="relative h-screen flex items-center justify-center w-full overflow-hidden"
                 onTouchStart={handleProjectTouchStart}
@@ -437,23 +341,30 @@ const Home = () => {
               </div>
               </div>
             ) : (
-              <div className="grid grid-cols-3 gap-6">
-                {projects.map((p, idx) => (
+              <div className="max-w-6xl mx-auto px-4 snap-start scroll-trigger-ready__worm-wrap">
+                 <h2 className="text-4xl font-bold mb-12 text-white">
+              Featured Projects
+                </h2>
+                <div className="grid grid-cols-3 gap-6">
+                  {projects.map((p, idx) => (
                   <SkillCard key={idx} {...p} />
                 ))}
+                </div>
+
+                
               </div>
             )}
           </div>
         </Section>
         {/* Certifications Section */}
-        <Section id="certifications" bgColor="bg-[#090927]" bgImage="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1920&h=1080&fit=crop" index={3}>
+        <Section id="certifications" bgColor="bg-[#090927]" bgImage="lorenzo.jpg" index={3}>
           <div className="snap-start max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold mb-12 text-center text-white">
-              Certifications
-            </h2>
+            
             {isMobile ? (
               <div className="snap-start max-w-6xl mx-auto px-4">
-                
+                <h2 className="text-4xl font-bold mt-24 pt-16 text-center text-white">
+              Certifications
+            </h2>
               <div
                 className="relative h-screen flex items-center justify-center w-full overflow-visible"
             
@@ -489,10 +400,15 @@ const Home = () => {
               </div>
               </div>
             ) : (   ///change here
-              <div className="grid grid-cols-2 gap-6">
-                {certificates.map((c, idx) => (
+              <div className="max-w-6xl mx-auto px-4 snap-start scroll-trigger-ready__worm-wrap">
+                 <h2 className="text-4xl font-bold mb-12 text-white">
+              Certifications
+                </h2>
+                <div className="grid grid-cols-3 gap-6">
+                  {certificates.map((c, idx) => (
                   <SkillCard key={idx} {...c} />
                 ))}
+                </div>
               </div>
             )}
           </div>
@@ -601,8 +517,36 @@ const AboutMeAnimated = ({ mobileFix }) => {
       }, '-=0.7');
     }
   };
-
-  // Unified JSX for both mobile and desktop
+  useEffect(() => {
+    if (animationComplete) {
+      gsap.to(textRef.current, {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        scale: 1,
+        filter: 'blur(0px)',
+        duration: 0.6,
+        ease: 'power3.out',
+      });
+    }
+  }, [animationComplete]);
+  useEffect(() => {
+    if (expanded && !isMobile) {
+      gsap.to(overlayRef.current, {
+        display: 'block',
+        opacity: 0.5,
+        duration: 0.3,
+        ease: 'power2.inOut',
+      });
+    } else {
+      gsap.to(overlayRef.current, {
+        display: 'none',
+        opacity: 0,
+        duration: 0.3,
+        ease: 'power2.inOut',
+      });
+    }
+  }, [expanded, isMobile]);
   return (
     <div
       ref={containerRef}
@@ -610,7 +554,7 @@ const AboutMeAnimated = ({ mobileFix }) => {
     >
       <div
         ref={imgRef}
-        className={`relative ${isMobile ? 'w-48 h-48 mb-6 rounded-2xl' : 'z-20 flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full mask-radial-to-73% border-0 border-l-transparent transition-all duration-700'} overflow-hidden cursor-pointer transition-all duration-700 bg-white shadow-lg`}
+        className={`relative ${isMobile ? 'w-48 h-48 mb-6 rounded-2xl' : 'z-20 flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full -to-93% border-0 border-l-transparent transition-all duration-700'} overflow-hidden cursor-pointer transition-all duration-700 shadow-lg`}
         onClick={handleExpand}
         style={{
           transformOrigin: 'center center',
@@ -621,7 +565,7 @@ const AboutMeAnimated = ({ mobileFix }) => {
         <img
           src="/me-png.png"
           alt="Profile"
-          className={`w-full h-full object-cover ${expanded && !isMobile ? 'rounded-2xl' : ''}`}
+          className={`w-full h-full object-cover`}
           draggable="false"
         />
         {!expanded && (

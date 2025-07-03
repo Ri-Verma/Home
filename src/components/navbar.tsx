@@ -153,8 +153,10 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
-            <span className="text-xl font-bold text-white hover:text-blue-400 transition-colors duration-300 cursor-pointer">
-              Portfolio
+            <span className="relative block w-32 sm:w-48 overflow-hidden h-7">
+              <span className="absolute animate-scroll-text whitespace-nowrap text-xl font-bold text-white hover:text-blue-400 transition-colors duration-300 cursor-pointer">
+                PortFolio
+              </span>
             </span>
           </div>
           {/* Social Icons Desktop */}

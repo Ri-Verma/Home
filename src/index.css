@@ -5,7 +5,14 @@
 html {
   scroll-behavior: smooth;
 }
-
+@keyframes scroll-text {
+  0% { left: 100%; }
+  100% { left: -100%; }
+}
+.animate-scroll-text {
+  position: absolute;
+  animation: scroll-text 6s linear infinite;
+}
 body {
   margin: 0;
   padding: 0;

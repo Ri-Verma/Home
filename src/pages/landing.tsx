@@ -235,17 +235,17 @@ const Home = () => {
   const certificates = [
     {
       icon: "🔒",
-      title: "Play It Safe: Manage Security Risks",
-      image: "/Coursera 0001.jpg",
-      url: "https://coursera.org/share/351d5062023d9918c89370da9897aa20",
-      description: "Advanced security certification covering network security, compliance, and operational security"
-    },
-    {
-      icon: <SiReact className="text-blue-500" />,
       title: "Foundations of Cybersecurity",
       image: "/Coursera 0002.jpg",
+      url: "https://coursera.org/share/351d5062023d9918c89370da9897aa20",
+      description: "Recognize core skills and knowledge needed to become a cybersecurity analyst Identify how security attacks impact business operations, Explain security ethics, Identify common tools used by cybersecurity analysts"
+    },
+    {
+      icon: "🔒",
+      title: "Play It Safe: Manage Security Risks",
+      image: "/Coursera 0001.jpg",
       url: "https://coursera.org/share/f161bcb5018b81cd9ee805085cad5d17",
-      description: "Cloud development certification for building and deploying applications on AWS"
+      description: "Identify the primary threats, risks, and vulnerabilities to business operations, Examine how organizations use security frameworks and controls to protect business operations, Define commonly used Security Information and Event Management (SIEM) tools, Use a playbook to respond to threats, risks, and vulnerabilities"
     }
   ];
 
@@ -401,7 +401,7 @@ const Home = () => {
               </div>
             ) : (   ///change here
               <div className="max-w-6xl mx-auto px-4 snap-start scroll-trigger-ready__worm-wrap">
-                 <h2 className="text-4xl font-bold mb-12 text-white">
+                 <h2 className="text-4xl font-bold mb-12 text-white mt-10">
               Certifications
                 </h2>
                 <div className="grid grid-cols-3 gap-6">
@@ -563,7 +563,7 @@ const AboutMeAnimated = ({ mobileFix }) => {
         }}
       >
         <img
-          src="/me-png.png"
+          src="/hero-2.png"
           alt="Profile"
           className={`w-full h-full object-cover`}
           draggable="false"

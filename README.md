@@ -59,7 +59,7 @@ You can deploy this site easily to Vercel, Netlify, GitHub Pages, or any static 
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source 
 
 ---
 

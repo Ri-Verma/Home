@@ -1,54 +1,66 @@
-# React + TypeScript + Vite
+# Rishikesh's Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a modern, responsive portfolio website built with React, TypeScript, Tailwind CSS, and GSAP animations. It showcases my projects, certifications, and skills as a full stack developer and cybersecurity enthusiast.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Responsive Design:** Looks great on all devices (desktop, tablet, mobile)
+- **Animated Sections:** Smooth GSAP-powered scroll and card animations
+- **Project Carousel:** Swipeable project and certificate cards on mobile
+- **Sticky/Snap Sections:** Each section snaps to the top for a clean navigation experience
+- **Social Links:** Quick access to GitHub, LinkedIn, LeetCode, Codeforces, and more
+- **About Me:** Interactive, animated introduction section
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [React](https://react.dev/) (with TypeScript)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [GSAP](https://greensock.com/gsap/) (GreenSock Animation Platform)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Vite](https://vitejs.dev/) (for fast development)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Getting Started
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Ri-Verma/portfolio-website.git
+   cd portfolio-website/frontend
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+4. **Open in your browser:**
+   Visit [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Folder Structure
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- `src/pages/landing.tsx` - Main landing page with all sections
+- `src/components/navbar.tsx` - Responsive navigation bar
+- `src/components/footer.tsx` - (Optional) Footer component
+- `src/index.css` - Tailwind and custom styles
+
+## Customization
+
+- **Update your projects/certificates:**
+  Edit the `projects` and `certificates` arrays in `landing.tsx` to showcase your own work.
+- **Profile Image:**
+  Replace `/hero-2.png` or `/me-png.png` with your own image in the `public` folder.
+- **Social Links:**
+  Update the `socialLinks` array in `navbar.tsx` with your own profiles.
+
+## Deployment
+
+You can deploy this site easily to Vercel, Netlify, GitHub Pages, or any static hosting provider.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+**Made with ❤️ by Rishikesh Verma**

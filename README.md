@@ -23,7 +23,7 @@ This is a modern, responsive portfolio website built with React, TypeScript, Tai
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Ri-Verma/portfolio-website.git
+   git clone https://github.com/Ri-Verma/Home.git
    cd portfolio-website/frontend
    ```
 2. **Install dependencies:**
@@ -35,7 +35,7 @@ This is a modern, responsive portfolio website built with React, TypeScript, Tai
    npm run dev
    ```
 4. **Open in your browser:**
-   Visit [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal)
+   Visit [http://localhost:{port}](http://localhost:{port}) (or the port shown in your terminal)
 
 ## Folder Structure
 

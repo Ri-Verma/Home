@@ -178,7 +178,7 @@ const SkillCard = memo(({ icon, title, description, image, url }) => {
   const CardContent = (
     <div className="flex flex-col items-center w-full h-full w-min-h-[420px]">
       {image && (
-        <img src={image} alt={title} className="w-full h-36 object-cover rounded-t-lg mb-4" />
+        <img src={image} alt={title} className="w-full h-28 object-cover rounded-t-lg mb-3" />
       )}
       <div className="text-4xl mb-2">{icon}</div>
       <h3 className="text-xl font-bold mb-2 text-white text-center">{title}</h3>
@@ -192,7 +192,7 @@ const SkillCard = memo(({ icon, title, description, image, url }) => {
   return (
     <div
       ref={cardRef}
-      className="flex flex-col items-center p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all cursor-pointer w-full min-h-[420px] max-w-xs mx-auto shadow-lg"
+      className="flex flex-col items-center p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all cursor-pointer w-full min-h-[340px] max-w-xs mx-auto shadow-lg"
     >
       {CardContent}
     </div>
@@ -211,39 +211,46 @@ const Home = () => {
   // project and certificate data
   const projects = [
     {
-      image: "/lms.jpg",
-      icon: <SiReact className="text-blue-500" />,
-      title: "Learning Management System",
-      url: "https://github.com/Ri-Verma/Learning-management-system",
-      description: "Full-stack web application built with React, Node.js, and MongoDB. Features user authentication, course management, and real-time updates. with realtime differnt dashbord for students and Instructor. The application is designed to allowing users to access courses, track progress, and manage their learning journey efficiently."
-    },
-    {
-      image: "/vehicle.jpg",
+      image: `${import.meta.env.BASE_URL}vehicle.jpg`,
       icon: <SiPython className="text-yellow-500" />,
       title: "Vehicle Rental Control Hub tool",
       url: "https://github.com/Ri-Verma/Vehicle-Rental-Control-Hub",
       description: "Python-based user-friendly car rental application built with Python and MySQL for seamless booking and secure data management. All user and rental details are securely stored in an SQL database, ensuring data integrity. The intuitive interface enhances makes the rental process effortless and efficient."
     },
     {
-      image: "/images.jpg",
-      icon: <SiNodedotjs className="text-green-500" />,
-      title: "Simmple E-commerce Platform",
-      url: "https://github.com/Ri-Verma/E-commerce_Website",
-      description: "MERN Stack based E-Commerce platform, featuring MongoDB for database management, React-Vite + Tailwind CSS for a dynamic frontend, and a Node.js + Express.js backend for seamless server operations. This project demonstrates my ability to develop robust, full-stack web applications."
+      image: `${import.meta.env.BASE_URL}960x0.jpg`,
+      icon: "🎓",
+      title: "Assamese OCR",
+      url: "https://github.com/Ri-Verma/Assamese_OCR",
+      description: "Assamese_OCR is a Python project targeting printed Assamese OCR. It includes components for data generation, model training, inference, and an interactive interface. However, lack of documentation, unclear data sources, and no performance metrics limit its immediate usability or adoption."
+    },
+    {
+      image: `${import.meta.env.BASE_URL}memehub.jpeg`,
+      icon: "🤣",
+      title: "MemeHub Website",
+      url: "https://github.com/Ri-Verma/MemeHub",
+      description: "MemeHub is a full-stack meme sharing platform where users can upload, explore, like, follow, and share memes. Built with a modern UI, backend API, and MySQL database."
+    },
+    {
+      image: `${import.meta.env.BASE_URL}lms.jpg`,
+      icon: <SiReact className="text-blue-500" />,
+      title: "Learning Management System",
+      url: "https://github.com/Ri-Verma/Learning-management-system",
+      description: "Full-stack web application built with React, Node.js, and MongoDB. Features user authentication, course management, and real-time updates. with realtime differnt dashbord for students and Instructor. The application is designed to allowing users to access courses, track progress, and manage their learning journey efficiently."
     }
   ];
   const certificates = [
     {
       icon: "🔒",
       title: "Foundations of Cybersecurity",
-      image: "/Coursera 0002.jpg",
+      image: `${import.meta.env.BASE_URL}Coursera 0002.jpg`,
       url: "https://coursera.org/share/351d5062023d9918c89370da9897aa20",
       description: "Recognize core skills and knowledge needed to become a cybersecurity analyst Identify how security attacks impact business operations, Explain security ethics, Identify common tools used by cybersecurity analysts"
     },
     {
-      icon: "🔒",
+      icon: "",
       title: "Play It Safe: Manage Security Risks",
-      image: "/Coursera 0001.jpg",
+      image: `${import.meta.env.BASE_URL}Coursera 0001.jpg`,
       url: "https://coursera.org/share/f161bcb5018b81cd9ee805085cad5d17",
       description: "Identify the primary threats, risks, and vulnerabilities to business operations, Examine how organizations use security frameworks and controls to protect business operations, Define commonly used Security Information and Event Management (SIEM) tools, Use a playbook to respond to threats, risks, and vulnerabilities"
     }
@@ -341,17 +348,31 @@ const Home = () => {
               </div>
               </div>
             ) : (
-              <div className="max-w-6xl mx-auto px-4 snap-start scroll-trigger-ready__worm-wrap">
-                 <h2 className="text-4xl font-bold mb-12 text-white">
-              Featured Projects
-                </h2>
-                <div className="grid grid-cols-3 gap-6">
-                  {projects.map((p, idx) => (
-                  <SkillCard key={idx} {...p} />
-                ))}
-                </div>
-
-                
+              <div className="max-w-[1200px] mx-auto px-4 pt-12">
+                 <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white text-center">
+                   Featured Projects
+                 </h2>
+                 <div className="relative">
+                   <button className="fixed left-8 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all border border-white/20">
+                     <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                     </svg>
+                   </button>
+                   <div className="mx-16">
+                     <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth gap-6 relative backdrop-blur-md bg-black/10 p-6 rounded-2xl border border-white/10" style={{ scrollbarWidth: 'none' }}>
+                       {projects.map((p, idx) => (
+                         <div key={idx} className="flex-none w-[calc(33.333%-16px)] min-w-[300px] snap-center">
+                           <SkillCard {...p} />
+                         </div>
+                       ))}
+                     </div>
+                   </div>
+                   <button className="fixed right-8 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all border border-white/20">
+                     <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                     </svg>
+                   </button>
+                 </div>
               </div>
             )}
           </div>
@@ -400,15 +421,31 @@ const Home = () => {
               </div>
               </div>
             ) : (   ///change here
-              <div className="max-w-6xl mx-auto px-4 snap-start scroll-trigger-ready__worm-wrap">
-                 <h2 className="text-4xl font-bold mb-12 text-white mt-10">
-              Certifications
-                </h2>
-                <div className="grid grid-cols-3 gap-6">
-                  {certificates.map((c, idx) => (
-                  <SkillCard key={idx} {...c} />
-                ))}
-                </div>
+              <div className="max-w-[1200px] mx-auto px-4 pt-12">
+                 <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white text-center">
+                   Certifications
+                 </h2>
+                 <div className="relative">
+                   <button className="fixed left-8 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all border border-white/20">
+                     <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                     </svg>
+                   </button>
+                   <div className="mx-16">
+                     <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth gap-6 relative backdrop-blur-md bg-black/10 p-6 rounded-2xl border border-white/10" style={{ scrollbarWidth: 'none' }}>
+                       {certificates.map((c, idx) => (
+                         <div key={idx} className="flex-none w-[calc(33.333%-16px)] min-w-[300px] snap-center">
+                           <SkillCard {...c} />
+                         </div>
+                       ))}
+                     </div>
+                   </div>
+                   <button className="fixed right-8 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all border border-white/20">
+                     <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                     </svg>
+                   </button>
+                 </div>
               </div>
             )}
           </div>
@@ -563,7 +600,7 @@ const AboutMeAnimated = ({ mobileFix }) => {
         }}
       >
         <img
-          src="/hero-2.png"
+          src={`${import.meta.env.BASE_URL}me-05.png`}
           alt="Profile"
           className={`w-full h-full object-cover`}
           draggable="false"
@@ -585,10 +622,11 @@ const AboutMeAnimated = ({ mobileFix }) => {
       >
         <h1 className={`font-bold mb-4 text-center ${isMobile ? 'text-2xl' : 'text-3xl md:text-4xl'}`}>About Me</h1>
         <p className={isMobile ? 'text-gray-200 text-base leading-relaxed text-center' : 'text-gray-200 text-lg leading-relaxed'}>
-          Hi! I'm Rishikesh, a passionate full stack developer and cybersecurity enthusiast. 
+          Hello Visitor! I'm Rishikesh, a certified full stack developer and cybersecurity enthusiast. 
           I love building modern web applications, exploring new technologies, and solving 
           real-world problems with code. My journey includes hands-on experience in React, 
-          Node.js, Python, C++, and a growing expertise in security best practices. 
+          Node.js, Python, C++, and a growing expertise in security best practices.
+          currently working on different SaaS projects to enhance my skills and contribute to the tech community. <br />
           Let's connect and create something amazing together!
         </p>
       </div>

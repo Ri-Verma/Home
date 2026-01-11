@@ -64,3 +64,4 @@ This project is open source
 ---
 
 **Made with ❤️ by Rishikesh Verma**
+### (Note : Dependecies are depriciated and not maintained, publication is stopped)
